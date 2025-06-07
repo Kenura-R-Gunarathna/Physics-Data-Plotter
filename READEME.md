@@ -1,5 +1,9 @@
 # Physics Data Plotter (PDP)
 
+# How to
+
+
+
 ## Features
 
 1. Sync data with working excel worksheet
