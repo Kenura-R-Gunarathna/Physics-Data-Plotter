@@ -13,6 +13,26 @@ Youtube: https://www.youtube.com/watch?v=XUqTVnGHaLI
 3. Chart Simulation using [Implot](https://github.com/epezent/implot)
 4. Output as matplotlib.pyplot charts
 
+## Install libraries
+
+### Install from `pyproject.toml`
+
+```bash
+uv pip install .
+```
+
+### Install from `uv.lock` file
+
+```bash
+uv pip install --require-hashes -r uv.lock
+```
+
+### Run
+
+```bash
+python main.py
+```
+
 ### Make Executable
 
 ```bash
