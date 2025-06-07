@@ -6,7 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/dist" />
       <excludeFolder url="file://$MODULE_DIR$/build/PDP/localpycs" />
     </content>
-    <orderEntry type="jdk" jdkName="uv (PythonProject)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="uv (PhysicsDataPlot)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

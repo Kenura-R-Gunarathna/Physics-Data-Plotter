@@ -38,3 +38,9 @@ python main.py
 ```bash
 pyinstaller PDP.spec
 ```
+
+# Make single Executable
+
+```bash
+python -m PyInstaller --onefile --noconsole -n PDP main.py
+```

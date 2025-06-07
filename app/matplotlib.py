@@ -1,3 +1,6 @@
+import matplotlib
+matplotlib.use('TkAgg')
+
 import dearpygui.dearpygui as dpg
 import matplotlib.pyplot as plt
 
