@@ -1,8 +1,10 @@
 # Physics Data Plotter (PDP)
 
-# How to
+## How to use
 
+[<img src="./.github/videos/physics-data-preview-demo.gif" alt="Physics Data Preview (PDP) app demo." />](https://www.youtube.com/watch?v=XUqTVnGHaLI)
 
+Youtube: https://www.youtube.com/watch?v=XUqTVnGHaLI
 
 ## Features
 
