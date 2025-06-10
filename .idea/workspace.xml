@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ede7c4da-f847-4a02-b6d7-32c92ec6fc0b" name="Changes" comment="updated workflow">
       <change beforePath="$PROJECT_DIR$/.github/workflows/build-and-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-and-release.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +113,7 @@
       <workItem from="1749320999934" duration="239000" />
       <workItem from="1749321311982" duration="1471000" />
       <workItem from="1749323606637" duration="180000" />
-      <workItem from="1749527409294" duration="4214000" />
+      <workItem from="1749527409294" duration="4763000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -212,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749531144425</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="updated workflow">
+      <option name="closed" value="true" />
+      <created>1749532186483</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1749532186483</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
