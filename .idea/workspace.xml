@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ede7c4da-f847-4a02-b6d7-32c92ec6fc0b" name="Changes" comment="code bug fix on matplotlib.py">
+    <list default="true" id="ede7c4da-f847-4a02-b6d7-32c92ec6fc0b" name="Changes" comment="updated workflow">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build-and-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-and-release.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +114,7 @@
       <workItem from="1749320999934" duration="239000" />
       <workItem from="1749321311982" duration="1471000" />
       <workItem from="1749323606637" duration="180000" />
-      <workItem from="1749527409294" duration="3177000" />
+      <workItem from="1749527409294" duration="4214000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -203,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749530460870</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="updated workflow">
+      <option name="closed" value="true" />
+      <created>1749531144425</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1749531144425</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +238,8 @@
     <MESSAGE value="created single .exe file" />
     <MESSAGE value="readme updated" />
     <MESSAGE value="code bug fix on matplotlib.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="code bug fix on matplotlib.py" />
+    <MESSAGE value="updated workflow" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated workflow" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PythonProject$main.coverage" NAME="main Coverage Results" MODIFIED="1749302577457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

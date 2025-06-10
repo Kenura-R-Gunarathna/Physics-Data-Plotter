@@ -18,17 +18,25 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
+      - name: Install uv (modern pip replacement)
         run: |
-          python -m pip install --upgrade pip
-          pip install pyinstaller
+          pip install uv
 
-      - name: Build executable
+      - name: Install project dependencies using uv
+        run: |
+          uv pip install -r uv.lock
+
+      - name: Install PyInstaller separately
+        run: |
+          uv pip install pyinstaller
+
+      - name: Build executable with PyInstaller
         run: |
           python -m PyInstaller --onefile --noconsole -n PDP main.py
 
       - name: Compress executable
-        run: Compress-Archive -Path dist/PDP.exe -DestinationPath dist/PDP.zip
+        run: |
+          Compress-Archive -Path dist/PDP.exe -DestinationPath dist/PDP.zip
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
