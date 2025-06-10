@@ -26,7 +26,7 @@ jobs:
 
       - name: Build executable with PyInstaller
         run: |
-          python -m PyInstaller --onefile --noconsole -n PDP main.py
+          python uv -m PyInstaller --onefile --noconsole -n PDP main.py
 
       - name: Compress executable
         run: |
