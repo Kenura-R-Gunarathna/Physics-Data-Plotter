@@ -21,29 +21,61 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v1
 
-      - name: Install project dependencies using uv sync
-        env:
-          UV_NO_CREATE_VENV: "1"
-        run: uv sync
-
-      - name: Install PyInstaller using uv
+      - name: Debug Initial Python Path and Executable
         run: |
-          uv pip install pyinstaller --system # PyInstaller also goes into system Python
+          echo "Python Executable: $(Get-Command python).Source"
+          echo "PYTHONPATH: $env:PYTHONPATH"
+          echo "Initial sys.path from Python:"
+          python -c "import sys; print(sys.path)"
+        shell: pwsh
 
-      # Optional: Debug step to see where things are
-      - name: List packages in system Python
+      - name: Install dependencies using uv sync
         env:
           UV_NO_CREATE_VENV: "1"
-        run: uv pip list
+        run: uv sync --locked --all-extras # Or --extra build if uv.lock was compiled with just that
+        # This should install dearpygui AND pyinstaller into the system Python
+
+      - name: Verify packages installed by uv
+        env:
+          UV_NO_CREATE_VENV: "1" # Ensure uv pip list uses the correct env
+        run: |
+          echo "--- uv pip list output ---"
+          uv pip list
+          echo "--- Looking for dearpygui in site-packages ---"
+          python -c "import site; print(site.getsitepackages())"
+          # On Windows, try finding where dearpygui might be
+          Get-ChildItem -Path (python -c "import site; print(site.getsitepackages()[0])") -Recurse -Filter "dearpygui" | Select-Object FullName
+          Get-ChildItem -Path (python -c "import site; print(site.getsitepackages()[-1])") -Recurse -Filter "dearpygui" | Select-Object FullName
+          echo "--- Looking for pyinstaller in site-packages ---"
+          Get-ChildItem -Path (python -c "import site; print(site.getsitepackages()[0])") -Recurse -Filter "pyinstaller" | Select-Object FullName
+          Get-ChildItem -Path (python -c "import site; print(site.getsitepackages()[-1])") -Recurse -Filter "pyinstaller" | Select-Object FullName
+        shell: pwsh
+
+      - name: Debug Python Path and Executable before PyInstaller
+        run: |
+          echo "Python Executable for PyInstaller: $(Get-Command python).Source"
+          echo "PYTHONPATH before PyInstaller: $env:PYTHONPATH"
+          echo "sys.path for PyInstaller:"
+          python -c "import sys; print(sys.path)"
+          echo "Attempting to import dearpygui directly:"
+          python -c "import dearpygui; print(dearpygui.__version__)"
         shell: pwsh
 
       - name: Build executable with PyInstaller
         run: |
-          python -m PyInstaller --onefile --noconsole -n PDP main.py # Now Python has both
+          python -m PyInstaller --onefile --noconsole -n PDP main.py --debug=imports
+          # Added --debug=imports to PyInstaller for more verbose output
+        shell: pwsh
+
+      - name: List files in dist directory
+        run: Get-ChildItem -Path dist -Recurse
+        shell: pwsh
+        if: always() # Run even if previous steps fail
 
       - name: Compress executable
         run: |
           Compress-Archive -Path dist/PDP.exe -DestinationPath dist/PDP.zip
+        shell: pwsh
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1

@@ -48,6 +48,6 @@ python -m PyInstaller --onefile --noconsole -n PDP main.py
 ### Create Lock file
 
 ```bash
-uv pip compile pyproject.toml --extra build -o uv.lock
+uv pip compile pyproject.toml --all-extras -o uv.lock
 ```
 
