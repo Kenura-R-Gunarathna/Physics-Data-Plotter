@@ -51,16 +51,6 @@ jobs:
           Get-ChildItem -Path (python -c "import site; print(site.getsitepackages()[-1])") -Recurse -Filter "pyinstaller" | Select-Object FullName
         shell: pwsh
 
-      - name: Debug Python Path and Executable before PyInstaller
-        run: |
-          echo "Python Executable for PyInstaller: $(Get-Command python).Source"
-          echo "PYTHONPATH before PyInstaller: $env:PYTHONPATH"
-          echo "sys.path for PyInstaller:"
-          python -c "import sys; print(sys.path)"
-          echo "Attempting to import dearpygui directly:"
-          python -c "import dearpygui; print(dearpygui.__version__)"
-        shell: pwsh
-
       - name: Build executable with PyInstaller
         run: |
           python -m PyInstaller --onefile --noconsole -n PDP main.py --debug=imports
