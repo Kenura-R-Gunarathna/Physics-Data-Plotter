@@ -35,6 +35,12 @@ jobs:
         run: uv sync --locked --all-extras # Or --extra build if requirements.in was compiled with just that
         # This should install dearpygui AND pyinstaller into the system Python
 
+      - name: Install PyInstaller using uv
+        env:
+          UV_NO_CREATE_VENV: "1"
+        run: |
+          uv pip install pyinstaller --system
+
       - name: Verify packages installed by uv
         env:
           UV_NO_CREATE_VENV: "1" # Ensure uv pip list uses the correct env
