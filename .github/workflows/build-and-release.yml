@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # This will check uv.lock too
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -21,16 +21,25 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v1
 
-      - name: Install dependencies using uv sync
+      - name: Install project dependencies using uv sync
+        env:
+          UV_NO_CREATE_VENV: "1"
         run: uv sync
 
       - name: Install PyInstaller using uv
         run: |
-          uv pip install pyinstaller --system
+          uv pip install pyinstaller --system # PyInstaller also goes into system Python
+
+      # Optional: Debug step to see where things are
+      - name: List packages in system Python
+        env:
+          UV_NO_CREATE_VENV: "1"
+        run: uv pip list
+        shell: pwsh
 
       - name: Build executable with PyInstaller
         run: |
-          python -m PyInstaller --onefile --noconsole -n PDP main.py
+          python -m PyInstaller --onefile --noconsole -n PDP main.py # Now Python has both
 
       - name: Compress executable
         run: |
