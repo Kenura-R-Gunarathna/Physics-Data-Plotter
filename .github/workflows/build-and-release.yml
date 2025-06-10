@@ -22,17 +22,19 @@ jobs:
         uses: astral-sh/setup-uv@v1
 
       - name: Install dependencies using uv sync
+        env:
+          UV_NO_CREATE_VENV: "1"
         run: uv sync
 
-      - name: Install PyInstaller using uv
-        run: |
-          uv pip install pyinstaller --system
-
       - name: Verify packages installed by uv
+        env:
+          UV_NO_CREATE_VENV: "1"
         run: |
           uv pip list
 
       - name: Build executable with PyInstaller
+        env:
+          UV_NO_CREATE_VENV: "1"
         run: |
           pyinstaller --onefile --noconsole -n PDP main.py
 
