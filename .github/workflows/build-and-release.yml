@@ -25,12 +25,10 @@ jobs:
         run: uv sync
 
       - name: Verify packages installed by uv
-        run: |
-          uv pip list
+        run: uv pip list
 
       - name: Build executable with PyInstaller
-        run: |
-          pyinstaller --onefile --noconsole -n PDP main.py
+        run: python -m PyInstaller --onefile --noconsole -n PDP main.py
 
       - name: List files in dist directory
         run: Get-ChildItem -Path dist -Recurse
