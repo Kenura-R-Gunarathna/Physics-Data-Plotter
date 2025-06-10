@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies using uv sync
         env:
           UV_NO_CREATE_VENV: "1"
-        run: uv sync --locked --all-extras # Or --extra build if uv.lock was compiled with just that
+        run: uv sync --locked --all-extras # Or --extra build if requirements.in was compiled with just that
         # This should install dearpygui AND pyinstaller into the system Python
 
       - name: Verify packages installed by uv

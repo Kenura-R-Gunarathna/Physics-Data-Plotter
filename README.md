@@ -24,7 +24,7 @@ uv pip install .
 ### Install from `uv.lock` file
 
 ```bash
-uv pip install --require-hashes -r uv.lock
+uv pip install --require-hashes -r requirements.in
 ```
 
 ### Run
@@ -48,6 +48,6 @@ python -m PyInstaller --onefile --noconsole -n PDP main.py
 ### Create Lock file
 
 ```bash
-uv pip compile pyproject.toml --all-extras -o uv.lock
+uv sync
 ```
 
