@@ -24,7 +24,7 @@ jobs:
 
       - name: Install project dependencies using uv
         run: |
-          uv pip install --project . --group default
+          uv pip install --project . --group default --system
 
       - name: Install PyInstaller separately
         run: |
