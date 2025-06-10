@@ -1,9 +1,9 @@
-name: Build and Release PDP
+name: Build and Release
 
 on:
   push:
     tags:
-      - 'v*'  # Only run on version tags like v1.0, v2.0 etc.
+      - 'v*'  # Triggers on version tags like v1.0.3
 
 jobs:
   build:
@@ -11,25 +11,30 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'  # Match your Python version
+          python-version: '3.12'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pyinstaller
 
-      - name: Build executable with PyInstaller
+      - name: Build executable
         run: |
           python -m PyInstaller --onefile --noconsole -n PDP main.py
 
-      - name: Upload release asset
-        uses: softprops/action-gh-release@v2
+      - name: Compress executable
+        run: Compress-Archive -Path dist/PDP.exe -DestinationPath dist/PDP.zip
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
         with:
-          files: dist/PDP.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          artifacts: dist/PDP.zip
+          allowUpdates: true
+          generateReleaseNotes: true
