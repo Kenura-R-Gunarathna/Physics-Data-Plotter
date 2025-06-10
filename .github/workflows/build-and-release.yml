@@ -22,7 +22,7 @@ jobs:
         uses: astral-sh/setup-uv@v1
 
       - name: Install dependencies using uv sync
-        run: uv sync --locked --extra build --system
+        run: uv sync --locked --extra build
 
       - name: Build executable with PyInstaller
         run: |
