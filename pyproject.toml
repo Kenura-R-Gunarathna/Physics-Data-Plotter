@@ -10,8 +10,3 @@ dependencies = [
     "scipy",
     "pywin32",
 ]
-
-[project.optional-dependencies]
-build = [
-    "pyinstaller",
-]

@@ -44,3 +44,10 @@ pyinstaller PDP.spec
 ```bash
 python -m PyInstaller --onefile --noconsole -n PDP main.py
 ```
+
+### Create Lock file
+
+```bash
+uv pip compile pyproject.toml --extra build -o uv.lock
+```
+
