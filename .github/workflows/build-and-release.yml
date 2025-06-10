@@ -27,8 +27,11 @@ jobs:
       - name: Verify packages installed by uv
         run: uv pip list
 
+      - name: Check PyInstaller version
+        run: .venv\Scripts\python.exe -m PyInstaller --version
+
       - name: Build executable with PyInstaller
-        run: python -m PyInstaller --onefile --noconsole -n PDP main.py
+        run: .venv\Scripts\python.exe -m PyInstaller --onefile --noconsole -n PDP main.py
 
       - name: List files in dist directory
         run: Get-ChildItem -Path dist -Recurse
