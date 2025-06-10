@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*'  # Triggers on version tags like v1.0.3
+      - 'v*'
 
 jobs:
   build:
@@ -11,24 +11,18 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # This will check uv.lock too
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Install uv (modern pip replacement)
-        run: |
-          pip install uv
+      - name: Install uv
+        uses: astral-sh/setup-uv@v1
 
-      - name: Install project dependencies using uv
-        run: |
-          uv pip install . --system
-
-      - name: Install PyInstaller separately
-        run: |
-          uv pip install pyinstaller
+      - name: Install dependencies using uv sync
+        run: uv sync --locked --extra build --system
 
       - name: Build executable with PyInstaller
         run: |
