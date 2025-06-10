@@ -259,13 +259,9 @@ dependencies = [
     { name = "dearpygui" },
     { name = "matplotlib" },
     { name = "numpy" },
+    { name = "pyinstaller" },
     { name = "pywin32" },
     { name = "scipy" },
-]
-
-[package.optional-dependencies]
-build = [
-    { name = "pyinstaller" },
 ]
 
 [package.metadata]
@@ -273,11 +269,10 @@ requires-dist = [
     { name = "dearpygui" },
     { name = "matplotlib", specifier = ">=3.10.3" },
     { name = "numpy" },
-    { name = "pyinstaller", marker = "extra == 'build'" },
+    { name = "pyinstaller" },
     { name = "pywin32" },
     { name = "scipy" },
 ]
-provides-extras = ["build"]
 
 [[package]]
 name = "pefile"

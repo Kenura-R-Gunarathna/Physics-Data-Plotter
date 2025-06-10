@@ -21,52 +21,25 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v1
 
-      - name: Debug Initial Python Path and Executable
-        run: |
-          echo "Python Executable: $(Get-Command python).Source"
-          echo "PYTHONPATH: $env:PYTHONPATH"
-          echo "Initial sys.path from Python:"
-          python -c "import sys; print(sys.path)"
-        shell: pwsh
-
       - name: Install dependencies using uv sync
-        env:
-          UV_NO_CREATE_VENV: "1"
-        run: uv sync --locked --all-extras # Or --extra build if requirements.in was compiled with just that
-        # This should install dearpygui AND pyinstaller into the system Python
+        run: uv sync
 
       - name: Install PyInstaller using uv
-        env:
-          UV_NO_CREATE_VENV: "1"
         run: |
           uv pip install pyinstaller --system
 
       - name: Verify packages installed by uv
-        env:
-          UV_NO_CREATE_VENV: "1" # Ensure uv pip list uses the correct env
         run: |
-          echo "--- uv pip list output ---"
           uv pip list
-          echo "--- Looking for dearpygui in site-packages ---"
-          python -c "import site; print(site.getsitepackages())"
-          # On Windows, try finding where dearpygui might be
-          Get-ChildItem -Path (python -c "import site; print(site.getsitepackages()[0])") -Recurse -Filter "dearpygui" | Select-Object FullName
-          Get-ChildItem -Path (python -c "import site; print(site.getsitepackages()[-1])") -Recurse -Filter "dearpygui" | Select-Object FullName
-          echo "--- Looking for pyinstaller in site-packages ---"
-          Get-ChildItem -Path (python -c "import site; print(site.getsitepackages()[0])") -Recurse -Filter "pyinstaller" | Select-Object FullName
-          Get-ChildItem -Path (python -c "import site; print(site.getsitepackages()[-1])") -Recurse -Filter "pyinstaller" | Select-Object FullName
-        shell: pwsh
 
       - name: Build executable with PyInstaller
         run: |
-          python -m PyInstaller --onefile --noconsole -n PDP main.py --debug=imports
-          # Added --debug=imports to PyInstaller for more verbose output
-        shell: pwsh
+          pyinstaller --onefile --noconsole -n PDP main.py
 
       - name: List files in dist directory
         run: Get-ChildItem -Path dist -Recurse
         shell: pwsh
-        if: always() # Run even if previous steps fail
+        if: always()
 
       - name: Compress executable
         run: |

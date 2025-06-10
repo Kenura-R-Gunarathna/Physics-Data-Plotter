@@ -42,7 +42,7 @@ pyinstaller PDP.spec
 # Make single Executable
 
 ```bash
-python -m PyInstaller --onefile --noconsole -n PDP main.py
+pyinstaller --onefile --noconsole -n PDP main.py
 ```
 
 ### Create Lock file
